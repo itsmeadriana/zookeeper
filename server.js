@@ -1,5 +1,6 @@
 const express = require('express');
 const { animals } = require('./data/animals');
+const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 
@@ -42,6 +43,10 @@ app.get('/api/animals', (req, res) => {
         results = filterByQuery(req.query, results);
     }
     res.json(results);
+});
+
+app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
 });
 
 app.listen(PORT, () => {
